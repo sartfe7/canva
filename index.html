@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #miCanvas
+        {
+            border: dotted 2px yellow;
+            background: green;
+        }
+    </style>
+</head>
+<body onload="dibujar();">
+    <canvas id="miCanvas" width="400" height="300">
+    </canvas>
+    <script>
+            // Aquí irá tu código JavaScript
+        function dibujar() 
+        {
+            const canvas = document.getElementById("miCanvas");
+            if (canvas.getContext) 
+            {
+                // ctx es la "pluma" o contexto de dibujo
+                const ctx = canvas.getContext("2d");
+                // TODO: Añadir comandos de dibujo
+                
+                // Dibujar un rectángulo negro relleno (ejemplo: 25, 25, 100, 100)
+                ctx.fillRect(25, 25, 100, 100);
+                // Borrar un cuadrado del centro
+                ctx.clearRect(45, 45, 60, 60);
+                // Dibujar un contorno
+                ctx.strokeRect(50, 50, 50, 50);
+
+                ctx.beginPath();
+                ctx.moveTo(225, 225); // Punto de partida
+                ctx.lineTo(225, 145);
+                ctx.lineTo(145, 225);
+                ctx.closePath(); // Cierra el triángulo
+                ctx.stroke();
+
+                ctx.beginPath();
+                // Círculo externo (cara completa)
+                ctx.arc(175, 75, 150, 0, Math.PI * 2, true);
+                // Ojo izquierdo (Mover la pluma para que no se conecte con la cara)
+                ctx.moveTo(165, 65);
+                ctx.arc(160, 65, 105, 0, Math.PI * 2, true);
+                // Boca (Media luna)
+                ctx.moveTo(210, 75);
+                ctx.arc(175, 75, 135, 0, Math.PI, false); // false = en sentido de las agujas del reloj
+                ctx.stroke();
+                  
+            }
+        }
+    </script>
+</body>
+</html>
+
