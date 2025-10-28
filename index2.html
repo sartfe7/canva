@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Canvas Animaciones</title>
     <style>
         #miCanvas
         {
@@ -16,56 +16,50 @@
     <canvas id="miCanvas" width="400" height="300">
     </canvas>
     <script>
-            // Aquí irá tu código JavaScript
         function dibujar() 
         {
             const canvas = document.getElementById("miCanvas");
             if (canvas.getContext) 
             {
-                // ctx es la "pluma" o contexto de dibujo
                 const ctx = canvas.getContext("2d");
-                // TODO: Añadir comandos de dibujo
-                let x = 0; // Posición inicial en X
-                const speed = 2; // Velocidad de movimiento
+                
+                // OPCIÓN 1: Solo animación lineal (descomenta esta sección)
+                /*
+                let x = 0;
+                const speed = 2;
+                
                 function animate() {
-                const ctx = canvas.getContext("2d");
-                // a. Limpiar el canvas en cada ciclo
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                // b. Dibujar el cuadrado (usando la posición actualizada x)
-                ctx.fillStyle = "green";
-                ctx.fillRect(x, 50, 20, 20);
-                // c. Actualizar la posición (incrementar x)
-                x = x + speed; // El cuadrado se mueve progresivamente hacia la derecha
-                // d. Repetir el ciclo
-                requestAnimationFrame(animate);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "blue";
+                    ctx.fillRect(x, 50, 20, 20);
+                    x = x + speed;
+                    requestAnimationFrame(animate);
                 }
-                // Iniciar la animación
                 requestAnimationFrame(animate);
+                */
+                
+                // OPCIÓN 2: Solo animación diagonal (esta está activa)
                 let x = 50;
                 let y = 50;
-                let speedX = 3; // Velocidad horizontal
-                let speedY = 3; // Velocidad vertical
+                let speedX = 3;
+                let speedY = 3;
+                
                 function animateDiagonal() {
-                const ctx = canvas.getContext("2d");
-
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                // Dibujar el objeto (ejemplo: cuadrado rojo)
-                ctx.fillStyle = "red";
-                ctx.fillRect(x, y, 20, 20);
-                // Actualizar posición
-                x += speedX;
-                y += speedY;
-                // Lógica de rebote (inversión de dirección al tocar los límites)
-                if (x + 20 > canvas.width || x < 0) {
-                speedX = -speedX;
-                }
-                if (y + 20 > canvas.height || y < 0) {
-                speedY = -speedY;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(x, y, 20, 20);
+                    x += speedX;
+                    y += speedY;
+                    
+                    if (x + 20 > canvas.width || x < 0) {
+                        speedX = -speedX;
+                    }
+                    if (y + 20 > canvas.height || y < 0) {
+                        speedY = -speedY;
+                    }
+                    requestAnimationFrame(animateDiagonal);
                 }
                 requestAnimationFrame(animateDiagonal);
-                }
-                requestAnimationFrame(animateDiagonal);
-               
             }
         }
     </script>
